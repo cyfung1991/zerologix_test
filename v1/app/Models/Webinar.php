@@ -20,6 +20,6 @@ class Webinar extends Model
 
     public function favouriteUsers()
     {
-        return $this->belongsToMany(User::class, 'user_webinar');
+        return $this->belongsToMany(User::class, 'user_favourited_webinar', 'webinar_id', 'user_id');
     }
 }

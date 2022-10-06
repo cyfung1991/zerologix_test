@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\WebinarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,16 @@ use App\Http\Controllers\Api\AuthController;
 Route::prefix('v1')->group(function () {
 
     Route::post('/auth/login/email', [AuthController::class, 'login']);
+    Route::get('/post/analysis', [WebinarController::class, 'favouriteWebinar']);
+
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/me/user/logout', [AuthController::class, 'logout']);
         Route::post('/me/user/info', function () {
             return "ok";
         });
+        Route::get('/me/user/favourite/post-analysis', [WebinarController::class, 'getFarouriteList']);
+        Route::post('/me/user/favourite/post-analysis/{id}', [WebinarController::class, 'favouriteWebinar']);
+        Route::delete('/me/user/favourite/post-analysis/{id}', [WebinarController::class, 'unfavouriteWebinar']);
     });
 
 });

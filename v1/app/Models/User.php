@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function favouriteWebinars()
     {
-        return $this->belongsToMany(Webinar::class, 'user_webinar');
+        return $this->belongsToMany(Webinar::class, 'user_favourited_webinar', 'user_id', 'webinar_id');
     }
 }

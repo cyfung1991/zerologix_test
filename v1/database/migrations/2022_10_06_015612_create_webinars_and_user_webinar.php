@@ -21,7 +21,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('user_webinar', function (Blueprint $table) {
+        Schema::create('user_favourited_webinar', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('webinar_id')->constrained('webinars')->onUpdate('cascade')->onDelete('cascade');
