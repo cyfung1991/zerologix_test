@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Webinar;
 use App\Models\UserFavouriteWebinar;
@@ -82,4 +83,19 @@ class WebinarController extends Controller
         $user_favourited_webinar_list = User::with('favouriteWebinars')->find($userId);
         return response()->json($user_favourited_webinar_list->favouriteWebinars);
     }
+
+    public function getWebinarList(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'per_page' => 'required|integer|min:1',
+            'page' => 'required|integer|min:1',
+        ]);
+        if( $validator->fails() ){
+            return response()->json($validator->messages(), 400);
+        }
+
+        $list = Webinar::paginate($request->per_page);
+        return response()->json($list);
+    }
+
 }

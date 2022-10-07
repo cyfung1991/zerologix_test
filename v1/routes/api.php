@@ -19,7 +19,7 @@ use App\Http\Controllers\Api\WebinarController;
 Route::prefix('v1')->group(function () {
 
     Route::post('/auth/login/email', [AuthController::class, 'login']);
-    Route::get('/post/analysis', [WebinarController::class, 'favouriteWebinar']);
+    Route::get('/post/analysis', [WebinarController::class, 'getWebinarList']);
 
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/me/user/logout', [AuthController::class, 'logout']);
