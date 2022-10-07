@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/me/user/info', function () {
             return "ok";
         });
-        Route::get('/me/user/favourite/post-analysis', [WebinarController::class, 'getFarouriteList']);
+        Route::get('/me/user/favourite/post-analysis', [WebinarController::class, 'getFavouriteList']);
         Route::post('/me/user/favourite/post-analysis/{id}', [WebinarController::class, 'favouriteWebinar']);
         Route::delete('/me/user/favourite/post-analysis/{id}', [WebinarController::class, 'unfavouriteWebinar']);
     });

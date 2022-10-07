@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Webinar;
+use App\Models\UserFavouriteWebinar;
 
 class WebinarController extends Controller
 {
@@ -30,16 +31,12 @@ class WebinarController extends Controller
             'user_id' => $userId,
             'webinar_id' => $webinar->id
         ];
-        $user_favourited_webinar = \DB::table('user_favourited_webinar')->where($target_array)->first();
-
+        $user_favourited_webinar = UserFavouriteWebinar::withTrashed()->where($target_array)->first();
         if ($user_favourited_webinar === null ){
-            $target_array['created_at'] = \Carbon\Carbon::now();
-            \DB::table('user_favourited_webinar')->insert($target_array);
-        }else{
-            \DB::table('user_favourited_webinar')->where('id', $user_favourited_webinar->id)->update([
-                'updated_at' => \Carbon\Carbon::now(),
-                'deleted_at' => null
-            ]);
+            $fav_webinar = new UserFavouriteWebinar($target_array);
+            $fav_webinar->save();
+        }else if( $user_favourited_webinar->trashed() ){
+            $user_favourited_webinar->restore();
         }
         return response()->json([
             'error' => false,
@@ -60,7 +57,7 @@ class WebinarController extends Controller
             'user_id' => $userId,
             'webinar_id' => $webinar->id
         ];
-        $user_favourited_webinar = \DB::table('user_favourited_webinar')->where($target_array)->first();
+        $user_favourited_webinar = UserFavouriteWebinar::where($target_array)->first();
 
         if ($user_favourited_webinar === null ){
             return response()->json([
@@ -68,7 +65,7 @@ class WebinarController extends Controller
                 'msg' => 'You haven\'t favourite this webinar before!'
             ]);
         }else{
-            \DB::table('user_favourited_webinar')->where('id', $user_favourited_webinar->id)->update(['deleted_at' => \Carbon\Carbon::now()]);
+            UserFavouriteWebinar::where('id', $user_favourited_webinar->id)->delete();
         }
 
         return response()->json([
@@ -77,12 +74,12 @@ class WebinarController extends Controller
         ]);
     }
 
-    public function getFarouriteList(Request $request)
+    public function getFavouriteList(Request $request)
     {
         $userId = auth('sanctum')->user()->id ?? false;
         if(!$userId) return response()->json( ['error' => true, 'msg' => 'No this user'], 500 );
 
-        $user_favourited_webinar_list = User::find($userId);
-        dd($user_favourited_webinar_list->favouriteWebinar);
+        $user_favourited_webinar_list = User::with('favouriteWebinars')->find($userId);
+        return response()->json($user_favourited_webinar_list->favouriteWebinars);
     }
 }

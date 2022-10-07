@@ -42,7 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Filter exclude soft deleted record
     public function favouriteWebinars()
+    {
+        return $this->allFavouriteWebinars()->whereNull('user_favourited_webinar.deleted_at');
+    }
+
+    // This is all record with soft deleted
+    public function allFavouriteWebinars()
     {
         return $this->belongsToMany(Webinar::class, 'user_favourited_webinar', 'user_id', 'webinar_id');
     }
