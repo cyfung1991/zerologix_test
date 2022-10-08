@@ -6,6 +6,13 @@
     @include auto_width_to_center;
     .webinars
     {
+
+        @media screen and (min-width: $screen_md) {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;    
+        }
+
         .webinar 
         {
             font-style: normal;
@@ -21,6 +28,9 @@
             :last-child
             {
                 margin-bottom: 0px;
+            }
+            @media screen and (min-width: $screen_md) {
+                flex: 0 0 28%;  
             }
 
             .created_date

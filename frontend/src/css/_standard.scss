@@ -5,3 +5,11 @@
         margin: 0 auto;
     }    
 }
+
+@mixin keep_half_in_the_element
+{
+    @media screen and (min-width: $screen_md) {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
