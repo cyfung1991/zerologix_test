@@ -5,6 +5,21 @@
 
     padding: 80px 20px;
     
+    .section_wrapper
+    {
+        @media screen and (min-width: $screen_md) {
+            display: flex;
+            @include auto_width_to_center;
+        }
+
+        .content_wrapper
+        {
+            @media screen and (min-width: $screen_md) {
+                flex: 50%;
+            }
+        }
+    }
+
     .title
     {
         font-style: normal;
@@ -14,6 +29,8 @@
         color: #01254F;
 
         padding-bottom: 20px;
+        @include auto_width_to_center;
+
     }
 
     .description
@@ -25,6 +42,7 @@
         color: #393939;
 
         padding-bottom: 12px;
+        @include auto_width_to_center;
     }
 
     .see_more
@@ -32,6 +50,7 @@
         display: flex;
         align-items: center;
         padding-bottom: 20px;
+        @include auto_width_to_center;
 
         .text
         {
@@ -57,6 +76,11 @@
     .youtube_wrapper
     {
         min-height: 160px;
+        @include auto_width_to_center;
+
+        @media screen and (min-width: $screen_md) {
+            flex: 50%;
+        }
 
         iframe
         {

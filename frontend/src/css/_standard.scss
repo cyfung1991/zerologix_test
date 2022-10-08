@@ -1,0 +1,7 @@
+@mixin auto_width_to_center
+{
+    @media screen and (min-width: $screen_md) {
+        width: 80%;
+        margin: 0 auto;
+    }    
+}

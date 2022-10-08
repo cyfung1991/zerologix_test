@@ -14,7 +14,16 @@ export class Heading extends Component {
           </div>
           <div className="nav">
             <div className="logo"></div>
-            <div className="f1"></div>
+            <div className="menu">
+              <ul>
+                <li>Why ACY?</li>
+                <li>Products</li>
+                <li>Platforms</li>
+                <li>Education</li>
+                <li>Partners</li>
+              </ul>
+            </div>
+            <button className="login">Login</button>
             <button className="logout">Logout</button>
           </div>
         </div>

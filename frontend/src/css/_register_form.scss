@@ -13,6 +13,8 @@
         text-align: center;    
         color: #01254F;
         padding-bottom: 15px;
+
+        @include auto_width_to_center;
     }
 
     .description
@@ -25,12 +27,16 @@
         color: #333333;
 
         padding-bottom: 20px;
+        @include auto_width_to_center;
+
     }
 
     .form_group
     {
         font-family: 'Open Sans';
         padding-bottom: 16px;
+        @include auto_width_to_center;
+
         label
         {
             display: block;

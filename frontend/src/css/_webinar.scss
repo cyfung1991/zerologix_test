@@ -1,9 +1,9 @@
 #webinars_wrapper
 {
-    font-family: 'PingFang SC';
-
+    // font-family: 'PingFang SC';
+    font-family: 'SF Pro Display';
     padding: 40px 20px;
-
+    @include auto_width_to_center;
     .webinars
     {
         .webinar 

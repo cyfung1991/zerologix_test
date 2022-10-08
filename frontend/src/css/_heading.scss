@@ -48,6 +48,32 @@
             background-position: left center;
             background-size: cover;
         }
+
+        button
+        {
+            &.login
+            {
+                display: none;
+                @media screen and (min-width: $screen_md) {
+                    display: block;
+                    margin-right: 10px;
+                }    
+            }
+        }
+
+        .menu 
+        {
+            flex: 1;
+            
+            ul li
+            {
+                display: none;
+                @media screen and (min-width: $screen_md) {
+                    display: inline;
+                    padding: 0 10px;
+                }
+            }
+        }
     }
 
     .f1
@@ -98,6 +124,8 @@
             line-height: 33px;
             text-align: center;
             color: #01254F;
+
+            @include auto_width_to_center; 
         }
 
         .description
@@ -108,6 +136,8 @@
             line-height: 20px;
             text-align: center;
             color: rgba(0, 0, 0, 0.65);
+
+            @include auto_width_to_center;
         }
     }
 }
