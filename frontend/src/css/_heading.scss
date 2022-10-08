@@ -1,0 +1,113 @@
+#heading_wrapper
+{
+    font-family: 'SF Pro Display';
+
+    .language
+    {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #F5F5F5;
+
+        @media screen and (min-width: $screen_md) {
+            background-color: unset;
+            justify-content: end;
+        }
+
+        select 
+        {
+            background: #FFFFFF;
+            border: 0;
+            border-radius: 4px;
+        }
+
+        button
+        {
+            @media screen and (min-width: $screen_md) {
+                display: none;
+            }
+        }
+
+
+    }
+
+    .nav
+    {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #F5F5F5;
+        .logo
+        {
+            width: 68px;
+            height: 19px;
+            background-image: url(../images/heading/logo_m.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: cover;
+        }
+    }
+
+    .f1
+    {
+        flex: 1;
+        @media screen and (min-width: $screen_md) {
+            display: none;
+        }
+    }
+
+    button
+    {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        letter-spacing: 0.6px;
+        border: 1;
+        border-radius: 4px;
+        padding: 8px 16px;
+        min-width: 100px;
+
+        &.login
+        {
+            color: #003476;
+            background-color: #FFFFFF;
+            border-color: #003476;
+        }
+        &.logout
+        {
+            color: #FFFFFF;
+            background-color: #003476;
+            border-color: #003476;
+        }
+    }
+
+    .webinar_wrapper
+    {
+        padding: 40px 20px;
+        background-color: #FFFFFF;
+
+        .title
+        {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 33px;
+            text-align: center;
+            color: #01254F;
+        }
+
+        .description
+        {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.65);
+        }
+    }
+}
